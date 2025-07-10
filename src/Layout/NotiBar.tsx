@@ -7,16 +7,16 @@ const NotiBar = () => {
   const [visible, setVisible] = useState(true);
   if (!visible) return null;
   return (
-    <div className="relative flex w-full items-center justify-center bg-primary-light py-2 px-4">
+    <header className="relative flex w-full items-center justify-center bg-primary-light py-2 px-4">
       <div className="flex flex-wrap items-center gap-4">
         {noti.map((item) => (
           <Notification key={item.id} icon={item.image} text={item.title} />
         ))}
         <button
-          className="hidden md:inline-flex items-center text-secondary-blue border-b border-secondary-blue text-button-xs"
+          className="group hidden md:inline-flex items-center text-secondary-blue border-b border-secondary-blue text-button-xs Inter"
         >
           Shop Now
-          <GoArrowRight className="ml-1" />
+          <GoArrowRight className="ml-2 transition-transform group-hover:translate-x-2" />
         </button>
       </div>
       <button
@@ -26,7 +26,7 @@ const NotiBar = () => {
       >
         <RxCross1 className="h-4 w-4 text-text7" />
       </button>
-    </div>
+    </header>
   );
 };
 export default NotiBar;

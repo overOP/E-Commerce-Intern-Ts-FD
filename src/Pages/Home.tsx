@@ -3,7 +3,7 @@ import MainHeading from "../Components/Home/Main/MainHeading";
 import BannerGrid  from "../Components/Home/Banner/BannerGrid";
 import ArrivalsSection from "../Components/Home/Arrivals/ArrivalsSection";
 
-const Home: React.FC = () => (
+const Home = () => (
   <section className="flex flex-col gap-16">
     <MainSlider />
     <MainHeading />

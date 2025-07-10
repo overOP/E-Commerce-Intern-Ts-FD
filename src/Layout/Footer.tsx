@@ -1,8 +1,7 @@
-import React from "react";
 import FooterLarge from "../Components/Layout/Footer/FooterLarge";
 import FooterSmall from "../Components/Layout/Footer/FooterSmall";
 
-const Footer: React.FC = () => {
+const Footer = () => {
   const year = new Date().getFullYear();
 
   return (

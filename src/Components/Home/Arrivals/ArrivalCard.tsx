@@ -32,41 +32,47 @@ const ArrivalCard = ({
     : "";
 
   return (
-    <div className="group rounded-lg border border-gray-200 p-3 hover:shadow-sm transition">
-      {/* image area */}
-      <div className="relative bg-[#F5F8FA] rounded-lg flex items-center justify-center h-[220px]">
-        {/* badges */}
-        <div className="absolute top-3 left-3 flex flex-col gap-1">
-          {isNew && (
-            <span className="text-[18px] py-0.5 rounded">
-              {isNew}
-            </span>
-          )}
-          {discount && (
-            <span className="bg-green-500 text-white text-[10px] px-2 py-0.5 rounded">
-              -{discount}
-            </span>
-          )}
+    <>
+      <div className="group rounded-lg border border-gray-200 p-3 hover:shadow-sm transition">
+        {/* image area */}
+        <div className="relative bg-[#F5F8FA] rounded-lg flex items-center justify-center h-[220px]">
+          {/* badges */}
+          <div className="absolute top-3 left-3 flex flex-col gap-1">
+            {isNew && (
+              <span className="text-[18px] py-0.5 rounded Inter">{isNew}</span>
+            )}
+            {discount && (
+              <span className="bg-green-500 text-white text-[10px] px-2 py-0.5 rounded Inter">
+                -{discount}
+              </span>
+            )}
+          </div>
+          {/* fav icon */}
+          <button className="absolute top-3 right-3 text-gray-500 hover:text-red-600">
+            <GoHeart size={18} />
+          </button>
+
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            className="object-contain h-[140px] transition-transform group-hover:scale-105"
+          />
         </div>
-        {/* fav icon */}
-        <button className="absolute top-3 right-3 text-gray-500 hover:text-red-600">
-          <GoHeart size={18} />
+        {/* add‑to‑cart */}
+        <button
+          onClick={() => addToCart({ id, name: title, price: currentPrice })}
+          className="Inter absolute top-[13rem] justify-center right-2  w-[230px] md:w-[180px] xl:w-[230px] py-2 bg-black text-white text-xs rounded-[8px] hover:bg-gray-800 hidden group-hover:flex"
+        >
+          Add to cart
         </button>
-
-        <img
-          src={image}
-          alt={title}
-          loading="lazy"
-          className="object-contain h-[140px] transition-transform group-hover:scale-105"
-        />
       </div>
-
       {/* content */}
       <div className="mt-4 space-y-1">
         <RatingStars />
-        <h3 className="text-text12 font-medium truncate">{title}</h3>
+        <h3 className="text-text12 Inter truncate">{title}</h3>
         <div className="flex items-center gap-2">
-          <span className="font-semibold">{price}</span>
+          <span className="Inter">{price}</span>
           {oldPrice && (
             <span className="text-xs line-through text-gray-400">
               ${oldPrice}
@@ -74,17 +80,8 @@ const ArrivalCard = ({
           )}
         </div>
       </div>
-
-      {/* add‑to‑cart */}
-      <button
-        onClick={() => addToCart({ id, name: title, price: currentPrice })}
-        className="mt-3 w-full py-2 bg-black text-white text-xs rounded hover:bg-gray-800"
-      >
-        Add to cart
-      </button>
-    </div>
+    </>
   );
 };
 
 export default ArrivalCard;
-

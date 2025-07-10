@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 import { navData } from "../../../Data/navData";
 
 const DesktopLinks = () => (
-  <div className="hidden md:flex items-center space-x-8 ">
+  <div className="hidden md:flex items-center space-x-8 Space">
     {navData.map(({ id, title, url }) => (
       <NavLink
         key={id}

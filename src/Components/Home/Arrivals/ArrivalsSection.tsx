@@ -1,7 +1,9 @@
 import { Link } from "react-router";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
+// @ts-ignore
 import "swiper/css";
+// @ts-ignore
 import "swiper/css/navigation";
 
 import { ArrivalData } from "../../../Data/homeData";
@@ -13,10 +15,10 @@ const ArrivalsSection = () => (
     {/* header */}
     <div className="flex justify-between items-center mb-6">
       <div className="flex-col">
-      <h2 className="text-2xl sm:text-3xl font-semibold ">New</h2><h2  className="text-2xl sm:text-3xl font-semibold "> Arrivals</h2></div>
+      <h2 className="text-2xl sm:text-3xl Poppins">New</h2><h2  className="text-2xl sm:text-3xl Poppins "> Arrivals</h2></div>
       <Link 
         to="/products"
-        className="lg:flex md:flex hidden items-center gap-1 text-button-sm font-medium border-b border-black"
+        className="lg:flex md:flex hidden items-center gap-1 text-button-sm Inter border-b border-black"
       >
         More Products <GoArrowRight />
       </Link>

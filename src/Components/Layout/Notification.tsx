@@ -9,7 +9,7 @@ const Notification = ({ icon, text }: NotificationProps) => (
     ) : (
       icon
     )}
-    {text && <span className="text-sm font-medium text-text6">{text}</span>}
+    {text && <span className="text-sm font-medium text-text6 Inter">{text}</span>}
   </div>
 );
 export default Notification;

@@ -4,6 +4,7 @@ import { MdClose } from "react-icons/md";
 import shopping from "../../../assets/Icon/shopping bag.png";
 import profile  from "../../../assets/Icon/Vector copy 2.png";
 import searchIc from "../../../assets/Icon/Vector copy.png";
+import shape    from "../../../assets/Icon/Shape.png";
 
 interface Props {
   cartCount: number;
@@ -21,6 +22,14 @@ const IconsGroup = ({ cartCount, searchOpen, onToggleSearch }: Props) => (
     {/* profile (placeholder) */}
     <button className="hidden md:flex"><img src={profile} alt="profile" /></button>
 
+    <Link to="/cart" className="relative text-gray-600 hover:text-black hidden md:flex">
+      <img src={shape} alt="cart" />
+      {cartCount > 0 && (
+        <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+          {cartCount}
+        </span>
+      )}
+    </Link>
     {/* cart */}
     <Link to="/cart" className="relative text-gray-600 hover:text-black hidden md:flex">
       <img src={shopping} alt="cart" />

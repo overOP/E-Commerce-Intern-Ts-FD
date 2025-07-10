@@ -25,11 +25,11 @@ const Banner = ({ title, button, img, index, icon }: Props) => {
       >
         {/* text + button */}
         <div className={isFirst ? "" : "mt-16 md:mt-0 lg:mt-[142px]"}>
-          <h2 className="text-h6 font-semibold leading-none flex items-center gap-2">
+          <h2 className="text-h6 Poppins leading-none flex items-center gap-2">
             {icon && <img src={icon} alt="" className="h-5 w-5" />}
             {title}
           </h2>
-          <button className="group mt-2 w-[6rem] flex items-center border-b border-black text-sm font-medium">
+          <button className="group mt-2 w-[6rem] flex items-center border-b border-black text-sm font-medium Inter">
             {button}
             <GoArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
           </button>
