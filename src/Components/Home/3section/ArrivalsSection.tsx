@@ -45,7 +45,7 @@ const ArrivalsSection = () => (
     </Swiper>
     <Link 
         to="/products"
-        className="flex md:hidden lg:hidden items-center gap-1 text-button-sm font-medium border-b border-black"
+        className="flex md:hidden lg:hidden items-center gap-1 text-button-sm Inter underline underline-offset-4"
       >
         More Products <GoArrowRight />
       </Link>

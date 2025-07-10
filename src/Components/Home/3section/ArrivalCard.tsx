@@ -33,7 +33,7 @@ const ArrivalCard = ({
 
   return (
     <>
-      <div className="group rounded-lg border border-gray-200 p-3 hover:shadow-sm transition">
+      <div className="group rounded-lg border border-gray-200  hover:shadow-sm transition">
         {/* image area */}
         <div className="relative bg-[#F5F8FA] rounded-lg flex items-center justify-center h-[220px]">
           {/* badges */}
@@ -62,7 +62,7 @@ const ArrivalCard = ({
         {/* add‑to‑cart */}
         <button
           onClick={() => addToCart({ id, name: title, price: currentPrice })}
-          className="Inter absolute top-[13rem] justify-center right-2  w-[230px] md:w-[180px] xl:w-[230px] py-2 bg-black text-white text-xs rounded-[8px] hover:bg-gray-800 hidden group-hover:flex"
+          className="Inter absolute top-[11.5rem] justify-center right-2  w-[230px] md:w-[180px] xl:w-[230px] py-2 bg-black text-white text-xs rounded-[8px] hover:bg-gray-800 hidden group-hover:flex"
         >
           Add to cart
         </button>

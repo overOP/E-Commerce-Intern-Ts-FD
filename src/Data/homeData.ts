@@ -111,5 +111,42 @@ export const BannerData = [
     }
   ];
 
+  export const ValueData = [
+    {
+      id: 1,
+      logo: "/src/assets/Icon/Vector copy 3.png",
+      title: "Free Shipping",
+      paragraph: "Order above $200"
+    },
+    {
+      id: 2,
+      logo: "/src/assets/Icon/money.png",
+      title: "Monet-back",
+      paragraph: "30 days guarantee"
+    },
+    {
+      id: 3,
+      logo: "/src/assets/Icon/lock 01.png",
+      title: "Secure Payments",
+      paragraph: "Secured by Stripe"
+    },
+    {
+      id: 4,
+      logo: "/src/assets/Icon/call.png",
+      title: "24/7 Support",
+      paragraph: "Phone and Email support"
+    }
+  ]
 
+  export const Banner5Data = [
+    {
+      id: 1,
+      image: "/src/assets/Img/Paste image.png",
+      sale: "SALE TO 35% OFF",
+      title: "HUNDREDS of New lower prices!",
+      paragraph: "It’s more affordable than ever to give every room in your home a stylish makeover.",
+      button: "Shop Now"
+    }
+  ];
+  
 
