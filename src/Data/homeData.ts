@@ -42,19 +42,19 @@ export const BannerData = [
       id: 0,
       title: "Living Room",
       button: "Shop Now",
-      image: "/src/assets/Img/1.jpg"
+      image: "/src/assets/Img/1.png"
     },
     {
       id: 1,
       title: "Bedroom",
       button: "Shop Now",
-      image: "/src/assets/Img/2.jpg"
+      image: "/src/assets/Img/2.png"
     },
     {
       id: 2,
       title: "Kitchen",
       button: "Shop Now",
-      image: "/src/assets/Img/3.jpg"
+      image: "/src/assets/Img/3.png"
     }
   ];
 
@@ -104,7 +104,7 @@ export const BannerData = [
       title: "Toasted",
       price: "$224.99",
       button: "Add to Cart",
-      image: "/src/assets/Img/3.jpg",
+      image: "/src/assets/Img/3.png",
       new: "New",
       discount: "50%",
       favrate: "/src/assets/Icon/Shape.png"
@@ -148,5 +148,24 @@ export const BannerData = [
       button: "Shop Now"
     }
   ];
-  
 
+  export const ArticlesData = [
+    {
+      id: 1,
+      img: "/src/assets/Img/a1.png",
+      title: "7 ways to decor your home",
+      btn: "Read More"
+    },
+    {
+      id: 2,
+      img: "/src/assets/Img/a2.png",
+      title: "Kitchen organization",
+      btn: "Read More"
+    },
+    {
+      id: 3,
+      img: "/src/assets/Img/a3.png",
+      title: "Decor your bedroom",
+      btn: "Read More"
+    }
+  ]

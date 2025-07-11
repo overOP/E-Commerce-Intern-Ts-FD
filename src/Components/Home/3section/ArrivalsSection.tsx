@@ -16,11 +16,12 @@ const ArrivalsSection = () => (
     <div className="flex justify-between items-center mb-6">
       <div className="flex-col">
       <h2 className="text-2xl sm:text-3xl Poppins">New</h2><h2  className="text-2xl sm:text-3xl Poppins "> Arrivals</h2></div>
-      <Link 
+      <Link
         to="/products"
-        className="lg:flex md:flex hidden items-center gap-1 text-button-sm Inter border-b border-black"
+        className="group mt-2 hidden md:flex lg:flex items-center border-b border-black text-button-sm Inter"
       >
-        More Products <GoArrowRight />
+        More Products
+        <GoArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
       </Link>
     </div>
 
@@ -43,12 +44,12 @@ const ArrivalsSection = () => (
         </SwiperSlide>
       ))}
     </Swiper>
-    <Link 
-        to="/products"
-        className="flex md:hidden lg:hidden items-center gap-1 text-button-sm Inter underline underline-offset-4"
-      >
-        More Products <GoArrowRight />
-      </Link>
+    <Link
+      to="/products"
+      className="group mt-2 w-[130px] flex md:hidden lg:hidden items-center border-b border-black text-button-sm Inter"
+    >
+      More Products <GoArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
+    </Link>
   </div>
 );
 

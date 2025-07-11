@@ -1,5 +1,5 @@
 interface Props {
-  img?: string;
+  img: string;
 }
 
 const BannerImg = ({ img }: Props) => {

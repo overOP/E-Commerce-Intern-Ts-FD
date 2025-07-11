@@ -1,10 +1,10 @@
 import { GoArrowRight } from "react-icons/go";
 
 interface Props {
-  sale?: string;
-  title?: string;
-  paragraph?: string;
-  button?: string;
+  sale: string;
+  title: string;
+  paragraph: string;
+  button: string;
 }
 
 const BannerText = ({ sale, title, paragraph, button }: Props) => {

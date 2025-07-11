@@ -48,7 +48,7 @@ const ArrivalCard = ({
             )}
           </div>
           {/* fav icon */}
-          <button className="absolute top-3 right-3 text-gray-500 hover:text-red-600">
+          <button className="absolute top-3 right-3 text-gray-500 hover:text-red-600 hidden group-hover:flex">
             <GoHeart size={18} />
           </button>
 
