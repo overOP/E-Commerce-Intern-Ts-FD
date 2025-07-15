@@ -5,10 +5,10 @@ import ChairImg from "../../../assets/Img/R.png";
 
 const Newsletter = () => {
   return (
-    <div className="w-full h-[230px] max-w-[1,440px] bg-[#f3f5f7] overflow-hidden py-10 px-4 md:px-12 lg:px-[80px] mx-auto flex items-center justify-between gap-8">
+    <div className="h-[230px] w-full max-w-[1140px] bg-[#f3f5f7] overflow-hidden py-10 px-4 md:px-12 lg:px-[80px] mx-auto flex items-center justify-between gap-8">
       
       {/* Left Image (cut from left) */}
-      <div className="hidden lg:flex w-[300px] -ml-[180px] flex-shrink-0">
+      <div className="hidden md:flex lg:flex w-[300px] -ml-[180px] flex-shrink-0">
         <img
           src={DresserImg}
           alt="Dresser"
@@ -39,7 +39,7 @@ const Newsletter = () => {
       </div>
 
       {/* Right Image (cut from right) */}
-      <div className="hidden lg:flex w-[400px] -mr-[290px] flex-shrink-0 justify-end">
+      <div className="hidden md:flex lg:flex w-[500px] -mr-[350px] flex-shrink-0 justify-end">
         <img
           src={ChairImg}
           alt="Chair"
