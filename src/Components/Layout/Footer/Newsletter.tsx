@@ -5,7 +5,7 @@ import ChairImg from "../../../assets/Img/R.png";
 
 const Newsletter = () => {
   return (
-    <div className="h-[230px] w-full max-w-[1140px] bg-[#f3f5f7] overflow-hidden py-10 px-4 md:px-12 lg:px-[80px] mx-auto flex items-center justify-between gap-8">
+    <div className="h-[230px] mt-10 w-full max-w-[1140px] bg-[#f3f5f7] overflow-hidden py-10 px-4 md:px-12 lg:px-[80px] mx-auto flex items-center justify-between gap-8">
       
       {/* Left Image (cut from left) */}
       <div className="hidden md:flex lg:flex w-[300px] -ml-[180px] flex-shrink-0">

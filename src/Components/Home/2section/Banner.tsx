@@ -1,4 +1,6 @@
 import { GoArrowRight } from "react-icons/go";
+import { useNavigate } from "react-router";
+import { productData } from "../../../Data/productData";
 
 interface Props {
   title: string;
@@ -11,6 +13,11 @@ interface Props {
 const Banner = ({ title, button, img, index, icon }: Props) => {
   const isFirst = index === 0;
 
+  const navigate = useNavigate();
+
+  const handleShopNow = (id: string) => {
+    navigate(`/shopnow/${id}`);
+  };
   return (
     <div
       className={`relative overflow-hidden rounded-[20px] bg-[#F5F8FA]
@@ -29,7 +36,9 @@ const Banner = ({ title, button, img, index, icon }: Props) => {
             {icon && <img src={icon} alt="" className="h-5 w-5" />}
             {title}
           </h2>
-          <button className="group mt-2 w-[6rem] flex items-center border-b border-black text-sm font-medium Inter">
+          <button className="group mt-2 w-[6rem] flex items-center border-b border-black text-sm font-medium Inter"
+          onClick={() => handleShopNow(productData[index].id.toString())}
+          >
             {button}
             <GoArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
           </button>

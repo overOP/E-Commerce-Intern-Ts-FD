@@ -5,7 +5,7 @@ import ArrivalsSection from "../Components/Home/3section/ArrivalsSection";
 import ValuesMain from "../Components/Home/4section/ValuesMain";
 import BannerMain from "../Components/Home/5section/BannerMain";
 import ArticlesMain from "../Components/Home/6section/ArticlesMain";
-import Newsletter from "../Components/Home/7section/Newsletter";
+
 
 
 const Home = () => (
@@ -23,8 +23,6 @@ const Home = () => (
     <BannerMain/>
     {/* 6th section */}
     <ArticlesMain/>
-    {/* 7th section */}
-    <Newsletter />
   </section>
 );
 
