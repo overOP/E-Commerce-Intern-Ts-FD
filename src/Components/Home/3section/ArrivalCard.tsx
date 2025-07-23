@@ -1,6 +1,7 @@
 import RatingStars from "./RatingStars";
 import { useCart } from "../../../Store/cartStore";
-import { GoHeart } from "react-icons/go";
+import { GoHeart, GoHeartFill } from "react-icons/go";
+import { useWishlist } from "../../../Store/wishlistStore";
 
 interface Arrival {
   id: number;
@@ -25,11 +26,25 @@ const ArrivalCard = ({
   discount,
 }: Arrival) => {
   const addToCart = useCart((state) => state.addToCart);
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
   const currentPrice = parsePrice(price);
   const oldPrice = discount
     ? (currentPrice / (1 - Number(discount.replace("%", "")) / 100)).toFixed(2)
     : "";
+
+  const handleWishlistClick = () => {
+    if (isInWishlist(id)) {
+      removeFromWishlist(id);
+    } else {
+      addToWishlist({
+        id,
+        title,
+        price,
+        image,
+      });
+    }
+  };
 
   return (
     <>
@@ -48,8 +63,12 @@ const ArrivalCard = ({
             )}
           </div>
           {/* fav icon */}
-          <button className="absolute top-3 right-3 text-gray-500 hover:text-red-600 hidden group-hover:flex">
-            <GoHeart size={18} />
+          <button onClick={handleWishlistClick} className="absolute top-3 right-3">
+            {isInWishlist(id) ? (
+              <GoHeartFill size={18} className="text-red-500" />
+            ) : (
+              <GoHeart size={18} className="text-gray-500 hover:text-red-600" />
+            )}
           </button>
 
           <img
@@ -85,3 +104,4 @@ const ArrivalCard = ({
 };
 
 export default ArrivalCard;
+

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Heart } from "lucide-react";
 import { FaAngleDown } from "react-icons/fa";
 import { products } from "../../../Data/shopData";
-
+import { useWishlist } from "../../../Store/wishlistStore"; // ✅ Wishlist import
 
 const priceRanges = [
   { label: "$0.00 - 99.99", min: 0, max: 99.99 },
@@ -17,11 +17,11 @@ const LivingRoom = () => {
   const [selectedPriceRanges, setSelectedPriceRanges] = useState<number[]>([0, 1, 2]);
   const [showFilter, setShowFilter] = useState(false);
 
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist(); // ✅ Wishlist hook
+
   const togglePriceRange = (index: number) => {
     setSelectedPriceRanges((prev) =>
-      prev.includes(index)
-        ? prev.filter((i) => i !== index)
-        : [...prev, index]
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
   };
 
@@ -34,16 +34,11 @@ const LivingRoom = () => {
   });
 
   useEffect(() => {
-    if (showFilter) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = showFilter ? "hidden" : "";
   }, [showFilter]);
 
   return (
     <div className="w-full max-w-[1210px] mx-auto px-4 md:px-10 py-8 flex space-x-6 relative">
-
       <button
         className="sm:hidden fixed top-4 left-4 z-50 bg-black text-white px-4 py-2 rounded shadow"
         onClick={() => setShowFilter(true)}
@@ -51,7 +46,6 @@ const LivingRoom = () => {
       >
         Filter
       </button>
-
 
       {showFilter && (
         <div
@@ -73,7 +67,6 @@ const LivingRoom = () => {
         role="region"
         aria-label="Filter options"
       >
-
         <button
           className="sm:hidden mb-6 px-3 py-1 border border-gray-300 rounded hover:bg-gray-100"
           onClick={() => setShowFilter(false)}
@@ -99,10 +92,7 @@ const LivingRoom = () => {
               "Dining",
               "Outdoor",
             ].map((cat) => (
-              <li
-                key={cat}
-                className={cat === "Living Room" ? "font-semibold underline" : ""}
-              >
+              <li key={cat} className={cat === "Living Room" ? "font-semibold underline" : ""}>
                 {cat}
               </li>
             ))}
@@ -130,7 +120,6 @@ const LivingRoom = () => {
       </aside>
 
       <main className="w-full sm:w-4/5">
-
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-text10 Inter text-2xl font-semibold">Living Room</h1>
           <div className="w-[296px] flex items-center justify-between">
@@ -139,34 +128,13 @@ const LivingRoom = () => {
               <FaAngleDown className="mt-1" />
             </label>
             <div className="flex items-center gap-2">
-              <img
-                src="/src/assets/Icon/s1.png"
-                onClick={() => setLayout("grid-4")}
-                className="cursor-pointer"
-                alt="4 columns"
-              />
-              <img
-                src="/src/assets/Icon/s2.png"
-                onClick={() => setLayout("grid-2")}
-                className="cursor-pointer"
-                alt="2 columns"
-              />
-              <img
-                src="/src/assets/Icon/s3.png"
-                onClick={() => setLayout("grid-3")}
-                className="cursor-pointer"
-                alt="3 columns"
-              />
-              <img
-                src="/src/assets/Icon/s4.png"
-                onClick={() => setLayout("list")}
-                className="cursor-pointer"
-                alt="List view"
-              />
+              <img src="/src/assets/Icon/s1.png" onClick={() => setLayout("grid-4")} className="cursor-pointer" alt="4 columns" />
+              <img src="/src/assets/Icon/s2.png" onClick={() => setLayout("grid-2")} className="cursor-pointer" alt="2 columns" />
+              <img src="/src/assets/Icon/s3.png" onClick={() => setLayout("grid-3")} className="cursor-pointer" alt="3 columns" />
+              <img src="/src/assets/Icon/s4.png" onClick={() => setLayout("list")} className="cursor-pointer" alt="List view" />
             </div>
           </div>
         </div>
-
 
         <div
           className={`grid gap-6 ${
@@ -194,9 +162,33 @@ const LivingRoom = () => {
               </div>
 
               {product.heart && (
-                <div className="absolute top-2 right-4 opacity-0 group-hover:opacity-100 transition duration-300">
-                  <Heart size={16} className="text-gray-400 hover:text-red-600" />
-                </div>
+                <button
+                  onClick={() => {
+                    if (product.id !== undefined && isInWishlist(product.id)) {
+                      removeFromWishlist(product.id);
+                    } else {
+                      addToWishlist({
+                        id: product.id ?? 0,
+                        title: product.title,
+                        price: product.price,
+                        image: product.image,
+                        // Add color or additional properties if needed
+                      });
+                    }
+                  }}
+                  className="absolute top-2 right-4 opacity-0 group-hover:opacity-100 transition duration-300"
+                  aria-label="Toggle wishlist"
+                >
+                  <Heart
+                    size={16}
+                    fill={product.id !== undefined && isInWishlist(product.id) ? "red" : "none"}
+                    className={
+                      isInWishlist(product.id ?? 0)
+                        ? "text-red-500"
+                        : "text-gray-400 hover:text-red-600"
+                    }
+                  />
+                </button>
               )}
 
               <img

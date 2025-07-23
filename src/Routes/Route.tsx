@@ -7,36 +7,34 @@ import Product from "../Pages/Product";
 import Shop from "../Pages/Shop";
 import Contact from "../Pages/Contact";
 
-export const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Layout/>,
-        children: [
-            {
-                path: "/",
-                element: <Home/>
-            },
-            {
-                path: "/cart",
-                element: <Cart/>
-            },
-            {
-                path: "/shopnow/:id",
-                element: <Shopnow/>
-            },
-            {
-                path: "/product",
-                element: <Product/>
-            },
-            {
-                path: '/shop',
-                element: <Shop/>
-            },
+// Account section components
+import Account from "../Layout/Account";
+import Main from "../Pages/account/Main";
+import Address from "../Pages/account/Address";
+import Orders from "../Pages/account/Orders";
+import Wishlist from "../Pages/account/Wishlist";
 
-            {
-                path: "/contact",
-                element: <Contact/>
-            }
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/cart", element: <Cart /> },
+      {
+        path: "/account",
+        element: <Account />,
+        children: [
+          { index: true, element: <Main /> }, 
+          { path: "address", element: <Address /> },
+          { path: "orders", element: <Orders /> },
+          { path: "wishlist", element: <Wishlist /> }
         ]
-    }
-])
+      },
+      { path: "/shopnow/:id", element: <Shopnow /> },
+      { path: "/product", element: <Product /> },
+      { path: "/shop", element: <Shop /> },
+      { path: "/contact", element: <Contact /> }
+    ]
+  }
+]);

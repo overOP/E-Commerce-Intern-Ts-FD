@@ -1,10 +1,12 @@
 import { Link } from "react-router";
 import { MdClose } from "react-icons/md";
+import { GoHeart } from "react-icons/go"; // Import heart icon
+import { useWishlist } from "../../../Store/wishlistStore"; // Import wishlist store
 
 import shopping from "../../../assets/Icon/shopping bag.png";
-import profile  from "../../../assets/Icon/Vector copy 2.png";
+import profile from "../../../assets/Icon/Vector copy 2.png";
 import searchIc from "../../../assets/Icon/Vector copy.png";
-import shape    from "../../../assets/Icon/Shape.png";
+
 
 interface Props {
   cartCount: number;
@@ -12,34 +14,52 @@ interface Props {
   onToggleSearch: () => void;
 }
 
-const IconsGroup = ({ cartCount, searchOpen, onToggleSearch }: Props) => (
-  <div className="flex items-center space-x-6">
-    {/* search toggle (desktop) */}
-    <button onClick={onToggleSearch} className="text-gray-600 hidden md:flex">
-      {searchOpen ? <MdClose size={22} /> : <img src={searchIc} alt="search" />}
-    </button>
+const IconsGroup = ({ cartCount, searchOpen, onToggleSearch }: Props) => {
+  // Get wishlist items count from store
+  const { wishlistItems } = useWishlist();
+  const wishlistCount = wishlistItems.length;
 
-    {/* profile (placeholder) */}
-    <button className="hidden md:flex"><img src={profile} alt="profile" /></button>
+  return (
+    <div className="flex items-center space-x-6">
+      {/* search toggle (desktop) */}
+      <button onClick={onToggleSearch} className="text-gray-600 hidden md:flex">
+        {searchOpen ? <MdClose size={22} /> : <img src={searchIc} alt="search" />}
+      </button>
 
-    <Link to="/cart" className="relative text-gray-600 hover:text-black hidden md:flex">
-      <img src={shape} alt="cart" />
-      {cartCount > 0 && (
-        <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-          2
-        </span>
-      )}
-    </Link>
-    {/* cart */}
-    <Link to="/cart" className="relative text-gray-600 hover:text-black hidden md:flex">
-      <img src={shopping} alt="cart" />
-      {cartCount > 0 && (
-        <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-          {cartCount}
-        </span>
-      )}
-    </Link>
-  </div>
-);
+      {/* wishlist */}
+      <Link
+        to="/"
+        className="relative text-gray-600 hover:text-black hidden md:flex"
+      >
+        <GoHeart size={20} className="text-gray-600 hover:text-red-500" />
+        {wishlistCount > 0 && (
+          <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+            {wishlistCount}
+          </span>
+        )}
+      </Link>
+
+      {/* profile (placeholder) */}
+      <Link to="/account">
+        <button className="hidden md:flex">
+          <img src={profile} alt="profile" />
+        </button>
+      </Link>
+
+      {/* cart */}
+      <Link
+        to="/cart"
+        className="relative text-gray-600 hover:text-black hidden md:flex"
+      >
+        <img src={shopping} alt="cart" />
+        {cartCount > 0 && (
+          <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+            {cartCount}
+          </span>
+        )}
+      </Link>
+    </div>
+  );
+};
 
 export default IconsGroup;
