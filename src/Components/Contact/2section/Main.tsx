@@ -1,5 +1,7 @@
 import Input from "../../Input";
 import ValuesMain from "./ValuesMain";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Main = () => {
   return (
@@ -48,7 +50,7 @@ const Main = () => {
               placeholder="Your Message"
               className="w-full h-[10rem]"
             />
-            <button className=" text-button-sm Inter bg-black text-white px-4 py-2 rounded-lg w-[189px] mt-4">
+            <button onClick={() => toast.success("Message sent successfully")} className=" text-button-sm Inter bg-black text-white px-4 py-2 rounded-lg w-[189px] mt-4">
               Send Message
             </button>
           </div>

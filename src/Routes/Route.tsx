@@ -2,8 +2,7 @@ import { createBrowserRouter } from "react-router";
 import Layout from "../Layout/Layout";
 import Home from "../Pages/Home";
 import Cart from "../Components/Cart";
-import Shopnow from "../Components/Product/shopnow/Shopnow";
-import Product from "../Pages/Product";
+import ShopMain from "../Components/Shopnow/ShopMain"
 import Shop from "../Pages/Shop";
 import Contact from "../Pages/Contact";
 
@@ -31,8 +30,7 @@ export const router = createBrowserRouter([
           { path: "wishlist", element: <Wishlist /> }
         ]
       },
-      { path: "/shopnow/:id", element: <Shopnow /> },
-      { path: "/product", element: <Product /> },
+      { path: "/shopmain/:id", element: <ShopMain/> },
       { path: "/shop", element: <Shop /> },
       { path: "/contact", element: <Contact /> }
     ]

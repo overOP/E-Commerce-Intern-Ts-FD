@@ -1,7 +1,6 @@
 import { Link } from "react-router";
 import { MdClose } from "react-icons/md";
-import { GoHeart } from "react-icons/go"; // Import heart icon
-import { useWishlist } from "../../../Store/wishlistStore"; // Import wishlist store
+import { useWishlist } from "../../../Store/wishlistStore";
 
 import shopping from "../../../assets/Icon/shopping bag.png";
 import profile from "../../../assets/Icon/Vector copy 2.png";
@@ -31,7 +30,7 @@ const IconsGroup = ({ cartCount, searchOpen, onToggleSearch }: Props) => {
         to="/"
         className="relative text-gray-600 hover:text-black hidden md:flex"
       >
-        <GoHeart size={20} className="text-gray-600 hover:text-red-500" />
+      <img src="/src/assets/Icon/Shape.png"/>
         {wishlistCount > 0 && (
           <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
             {wishlistCount}

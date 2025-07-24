@@ -1,6 +1,6 @@
 import { GoArrowRight } from "react-icons/go";
 import { useNavigate } from "react-router";
-import { productData } from "../../../Data/productData";
+import { productData } from "../../../Data/productData"; // This should map Banner index to product id
 
 interface Props {
   title: string;
@@ -12,12 +12,18 @@ interface Props {
 
 const Banner = ({ title, button, img, index, icon }: Props) => {
   const isFirst = index === 0;
-
   const navigate = useNavigate();
 
-  const handleShopNow = (id: string) => {
-    navigate(`/shopnow/${id}`);
+  // Use Banner index to find the product id to navigate to
+  // Ensure your productData matches bannerData ordering
+  const productId = productData[index]?.id;
+
+  const handleShopNow = () => {
+    if (productId) {
+      navigate(`/shopmain/${productId}`);
+    }
   };
+
   return (
     <div
       className={`relative overflow-hidden rounded-[20px] bg-[#F5F8FA]
@@ -25,26 +31,24 @@ const Banner = ({ title, button, img, index, icon }: Props) => {
           ? "h-[377px] md:h-full lg:h-[664px] lg:w-[548px]"
           : "h-[200px] md:h-[290px] lg:h-[320px] lg:ml-[34px]"}`}
     >
-      {/* inner flex wrapper */}
       <div
         className={`flex gap-2 sm:gap-4 p-8
           ${isFirst ? "flex-col" : "flex-row md:flex-col lg:flex-row"}`}
       >
-        {/* text + button */}
         <div className={isFirst ? "" : "mt-16 md:mt-0 lg:mt-[142px]"}>
           <h2 className="text-h6 Poppins leading-none flex items-center gap-2">
             {icon && <img src={icon} alt="" className="h-5 w-5" />}
             {title}
           </h2>
-          <button className="group mt-2 w-[6rem] flex items-center border-b border-black text-sm font-medium Inter"
-          onClick={() => handleShopNow(productData[index].id.toString())}
+          <button
+            className="group mt-2 w-[6rem] flex items-center border-b border-black text-sm font-medium Inter"
+            onClick={handleShopNow}
           >
             {button}
             <GoArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
           </button>
         </div>
 
-        {/* image */}
         <img
           src={img}
           alt={title}

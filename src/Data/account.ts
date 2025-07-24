@@ -1,34 +1,47 @@
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export const links = [
-    {
-        id: 0,
-        title: "Account Details",
-        url: "/account",
-        },
-    {
-      id: 1,
-      title: "Address",
-      url: "/account/address",
+  {
+    id: 0,
+    title: "Account Details",
+    url: "/account",
+  },
+  {
+    id: 1,
+    title: "Address",
+    url: "/account/address",
+  },
+  {
+    id: 2,
+    title: "Orders",
+    url: "/account/orders",
+  },
+  {
+    id: 3,
+    title: "Wishlist",
+    url: "/account/wishlist",
+  },
+  {
+    id: 4,
+    title: "Log Out",
+    url: "/",
+    onClick: () => {
+      toast.info("Logging out...", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+
+      // Add your actual logout logic here if needed
     },
-    {
-      id: 2,
-      title: "Orders",
-      url: "/account/orders",
-    },
-    {
-      id: 3,
-      title: "Wishlist",
-      url: "/account/wishlist",
-    },
-    {
-      id: 4,
-      title: "Log Out",
-      url: "/",
-      onClick: () => {
-        alert("Logging out...");
-      },
-      onClickOnly: true,
-    }
-  ];
+    onClickOnly: true,
+  }
+];
+
   
 
   export const addressData = [

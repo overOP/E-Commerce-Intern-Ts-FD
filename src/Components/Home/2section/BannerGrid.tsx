@@ -1,5 +1,5 @@
 import { BannerData } from "../../../Data/homeData";
-import Banner       from "./Banner";
+import Banner from "./Banner";
 
 const BannerGrid = () => (
   <div className="h-auto bg-white flex justify-center">
