@@ -8,6 +8,16 @@ import { FaAngleRight } from "react-icons/fa";
 import { useCart } from "../../Store/cartStore";
 import { useWishlist } from "../../Store/wishlistStore";
 
+
+interface Review {
+  id: number;
+  productId: string;
+  name: string;
+  message: string;
+  rating: number;
+}
+
+
 const ShopnowMain = () => {
   const { id } = useParams<{ id: string }>();
 
@@ -107,6 +117,19 @@ const ShopnowMain = () => {
   const increaseQuantity = () => setQuantity((q) => q + 1);
   const decreaseQuantity = () => setQuantity((q) => (q > 1 ? q - 1 : 1));
 
+
+  const [reviewCount, setReviewCount] = useState(0);
+
+useEffect(() => {
+  const stored = localStorage.getItem("reviews");
+  if (stored && id) {
+    const parsed = JSON.parse(stored);
+    const filtered = parsed.filter((r: Review) => r.productId === id);
+    setReviewCount(filtered.length + 1); // +1 for the hardcoded review
+  }
+}, [id]);
+
+
   return (
     <div className="w-full lg:max-w-[1210px] mx-auto px-4 md:px-10 py-8 space-y-6">
       <ShopnowNav />
@@ -120,7 +143,7 @@ const ShopnowMain = () => {
               className="object-contain max-h-full max-w-full"
               loading="lazy"
             />
-            <div className="absolute top-4 left-4 bg-black text-white px-2 py-1 text-xs Inter rounded">
+            <div className="absolute top-4 left-4  px-2 py-1 text-xs Inter rounded">
               NEW
             </div>
             <div className="absolute top-12 left-4 bg-green-500 text-white px-2 py-1 text-xs Inter rounded">
@@ -147,9 +170,10 @@ const ShopnowMain = () => {
 
         {/* Right side - Product info */}
         <div className="w-full lg:w-1/2 space-y-4">
-          <div className="text-sm text-gray-600">
-            ★★★★★ <span className="ml-1 text-gray-400 Inter text-text7">(11 Reviews)</span>
-          </div>
+        <div className="text-sm text-gray-600">
+  ★★★★★ <span className="ml-1 text-gray-400 Inter text-text7">({reviewCount} Reviews)</span>
+</div>
+
 
           <h2 className=" text-gray-900 Poppins text-h4">{product.title}</h2>
 
@@ -261,6 +285,16 @@ const ShopnowMain = () => {
             >
               Add to Cart
             </button>
+            <div className=" w-[311px] md:w-[508px] h-[96px] pt-[24px] pb-[24px] gap-[8px] flex flex-col">
+              <div className="w-[147px] flex items-center justify-between">
+                <p className="Inter text-tex7 text-neutral-4">SKU</p>
+                <p className="Inter text-tex7 text-neutral-4">1117</p>
+              </div>
+              <div className="w-[291px] flex items-center justify-between">
+                <p className="Inter text-tex7 text-neutral-4">CATEGORY</p>
+                <p className="Inter text-tex7 text-neutral-4">Living Room, Bedroom</p>
+              </div>
+            </div>
         </div>
       </div>
     </div>
