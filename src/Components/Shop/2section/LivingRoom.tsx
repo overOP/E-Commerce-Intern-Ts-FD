@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Heart } from "lucide-react";
 import { FaAngleDown } from "react-icons/fa";
 import { products } from "../../../Data/shopData";
-import { useWishlist } from "../../../Store/wishlistStore"; // ✅ Wishlist import
+import { useWishlist } from "../../../Store/wishlistStore";
+import { useCart } from "../../../Store/cartStore";
 
 const priceRanges = [
   { label: "$0.00 - 99.99", min: 0, max: 99.99 },
@@ -17,7 +18,8 @@ const LivingRoom = () => {
   const [selectedPriceRanges, setSelectedPriceRanges] = useState<number[]>([0, 1, 2]);
   const [showFilter, setShowFilter] = useState(false);
 
-  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist(); // ✅ Wishlist hook
+  const { addToCart } = useCart(); 
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
   const togglePriceRange = (index: number) => {
     setSelectedPriceRanges((prev) =>
@@ -42,35 +44,26 @@ const LivingRoom = () => {
       <button
         className="sm:hidden fixed top-4 left-4 z-50 bg-black text-white px-4 py-2 rounded shadow"
         onClick={() => setShowFilter(true)}
-        aria-label="Open filter"
       >
         Filter
       </button>
 
       {showFilter && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40"
-          onClick={() => setShowFilter(false)}
-          aria-hidden="true"
-        />
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={() => setShowFilter(false)} />
       )}
 
       <aside
         className={`
-          bg-white p-6 rounded-md shadow-md
-          w-64
+          bg-white p-6 rounded-md shadow-md w-64
           fixed top-0 left-0 h-full z-50
           transform transition-transform duration-300 ease-in-out
           sm:static sm:translate-x-0 sm:w-1/5 sm:shadow-none sm:p-4
           ${showFilter ? "translate-x-0" : "-translate-x-full"}
         `}
-        role="region"
-        aria-label="Filter options"
       >
         <button
           className="sm:hidden mb-6 px-3 py-1 border border-gray-300 rounded hover:bg-gray-100"
           onClick={() => setShowFilter(false)}
-          aria-label="Close filter"
         >
           Close
         </button>
@@ -83,15 +76,7 @@ const LivingRoom = () => {
         <div className="mb-8">
           <h3 className="Inter text-tsxt10 mb-2 font-semibold">CATEGORIES</h3>
           <ul className="space-y-1 text-text7 Inter">
-            {[
-              "All Rooms",
-              "Living Room",
-              "Bedroom",
-              "Kitchen",
-              "Bathroom",
-              "Dining",
-              "Outdoor",
-            ].map((cat) => (
+            {["All Rooms", "Living Room", "Bedroom", "Kitchen", "Bathroom", "Dining", "Outdoor"].map((cat) => (
               <li key={cat} className={cat === "Living Room" ? "font-semibold underline" : ""}>
                 {cat}
               </li>
@@ -147,85 +132,93 @@ const LivingRoom = () => {
               : "grid-cols-1"
           }`}
         >
-          {filteredProducts.map((product, idx) => (
-            <div
-              key={idx}
-              className={`group border p-4 rounded-md relative transition duration-300 hover:shadow-lg ${
-                layout === "list" ? "flex gap-4 items-center" : ""
-              }`}
-            >
-              <div className="absolute top-2 left-3 text-xs Inter px-2 py-1 rounded bg-gray-200">
-                {product.tag}
-              </div>
-              <div className="absolute top-9 bg-green-500 text-white text-xs px-2 py-1 rounded">
-                {product.discount}
-              </div>
+          {filteredProducts.map((product, idx) => {
+            const priceNum = parseFloat(product.price.replace(/[$,]/g, ""));
 
-              {product.heart && (
-                <button
-                  onClick={() => {
-                    if (product.id !== undefined && isInWishlist(product.id)) {
-                      removeFromWishlist(product.id);
-                    } else {
-                      addToWishlist({
-                        id: product.id ?? 0,
-                        title: product.title,
-                        price: product.price,
-                        image: product.image,
-                        // Add color or additional properties if needed
-                      });
-                    }
-                  }}
-                  className="absolute top-2 right-4 opacity-0 group-hover:opacity-100 transition duration-300"
-                  aria-label="Toggle wishlist"
-                >
-                  <Heart
-                    size={16}
-                    fill={product.id !== undefined && isInWishlist(product.id) ? "red" : "none"}
-                    className={
-                      isInWishlist(product.id ?? 0)
-                        ? "text-red-500"
-                        : "text-gray-400 hover:text-red-600"
-                    }
-                  />
-                </button>
-              )}
+            return (
+              <div
+                key={idx}
+                className={`group border p-4 rounded-md relative transition duration-300 hover:shadow-lg ${
+                  layout === "list" ? "flex gap-4 items-center" : ""
+                }`}
+              >
+                <div className="absolute top-2 left-3 text-xs Inter px-2 py-1 rounded bg-gray-200">{product.tag}</div>
+                <div className="absolute top-9 bg-green-500 text-white text-xs px-2 py-1 rounded">{product.discount}</div>
 
-              <img
-                src={product.image}
-                alt={product.title}
-                className={`${
-                  layout === "list" ? "w-36 h-24" : "w-full h-40"
-                } object-contain ${layout === "list" ? "mb-0" : "mb-4"}`}
-              />
-
-              <div className={`${layout === "list" ? "flex-1" : ""}`}>
-                <div className="mt-2 text-black-500 text-sm">
-                  {"★".repeat(product.rating)}
-                  {"☆".repeat(5 - product.rating)}
-                </div>
-
-                <h2 className="Inter text-tex12">{product.title}</h2>
-
-                <div className="text-sm text-gray-500">
-                  {product.oldPrice ? (
-                    <span>
-                      <span className="line-through mr-2">{product.oldPrice}</span>
-                      <span className="text-black font-bold">{product.price}</span>
-                    </span>
-                  ) : (
-                    <span className="font-bold">{product.price}</span>
-                  )}
-                </div>
-
-                {product.button && (
-                  <button className="w-full Inter mt-4 border bg-black text-white border-black py-2 rounded opacity-0 group-hover:opacity-100 transition duration-300">
-                    {product.button}
+                {product.heart && (
+                  <button
+                    onClick={() => {
+                      if (product.id !== undefined && isInWishlist(product.id)) {
+                        removeFromWishlist(product.id);
+                      } else {
+                        addToWishlist({
+                          id: product.id ?? 0,
+                          title: product.title,
+                          price: product.price,
+                          image: product.image,
+                        });
+                      }
+                    }}
+                    className="absolute top-2 right-4 opacity-0 group-hover:opacity-100 transition duration-300"
+                    aria-label="Toggle wishlist"
+                  >
+                    <Heart
+                      size={16}
+                      fill={product.id !== undefined && isInWishlist(product.id) ? "red" : "none"}
+                      className={
+                        isInWishlist(product.id ?? 0)
+                          ? "text-red-500"
+                          : "text-gray-400 hover:text-red-600"
+                      }
+                    />
                   </button>
                 )}
+
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className={`${layout === "list" ? "w-36 h-24" : "w-full h-40"} object-contain ${layout === "list" ? "mb-0" : "mb-4"}`}
+                />
+
+                <div className={`${layout === "list" ? "flex-1" : ""}`}>
+                  <div className="mt-2 text-black-500 text-sm">
+                    {"★".repeat(product.rating)}
+                    {"☆".repeat(5 - product.rating)}
+                  </div>
+
+                  <h2 className="Inter text-tex12">{product.title}</h2>
+
+                  <div className="text-sm text-gray-500">
+                    {product.oldPrice ? (
+                      <span>
+                        <span className="line-through mr-2">{product.oldPrice}</span>
+                        <span className="text-black font-bold">{product.price}</span>
+                      </span>
+                    ) : (
+                      <span className="font-bold">{product.price}</span>
+                    )}
+                  </div>
+
+                  {product.button && (
+                    <button
+                      onClick={() =>
+                        addToCart({
+                          id: product.id ?? 0,
+                          name: product.title,
+                          price: priceNum,
+                          image: product.image,
+
+                        })
+                      }
+                      className="w-full Inter mt-4 border bg-black text-white border-black py-2 rounded opacity-0 group-hover:opacity-100 transition duration-300"
+                    >
+                      {product.button}
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="mt-8 flex justify-center">

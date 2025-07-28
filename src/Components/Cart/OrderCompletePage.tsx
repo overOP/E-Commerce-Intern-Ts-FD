@@ -1,6 +1,7 @@
 
 import { useCart } from "../../Store/cartStore";
 import { ArrivalData } from "../../Data/homeData";
+import { products } from "../../Data/shopData";
 
 export const OrderCompletePage = () => {
   const { cartItem } = useCart(); 
@@ -14,8 +15,13 @@ export const OrderCompletePage = () => {
   };
 
   const getProductImage = (id: number) => {
-    return ArrivalData.find((item) => item.id === id)?.image || "https://via.placeholder.com/80";
+    return (
+      ArrivalData.find((item) => item.id === id)?.image ||
+      products.find((item) => item.id === id)?.image ||
+      "https://via.placeholder.com/80"
+    );
   };
+  
 
   return (
     <div className="max-w-xl mx-auto flex flex-col items-center text-center">

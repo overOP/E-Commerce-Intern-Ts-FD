@@ -1,13 +1,19 @@
 
 import { useCart } from "../../Store/cartStore";
 import { ArrivalData } from "../../Data/homeData";
+import { products } from "../../Data/shopData";
 
 export const CheckoutOrderSummary = () => {
   const { cartItem, increaseQuantity, decreaseQuantity } = useCart();
 
   const getProductImage = (id: number) => {
-    return ArrivalData.find((item) => item.id === id)?.image || "https://via.placeholder.com/64";
+    return (
+      ArrivalData.find((item) => item.id === id)?.image ||
+      products.find((item) => item.id === id)?.image ||
+      "https://via.placeholder.com/80"
+    );
   };
+  
   
   // Dummy values from the image
   const couponDiscount = 25.00;

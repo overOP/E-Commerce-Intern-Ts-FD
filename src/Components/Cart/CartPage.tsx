@@ -1,6 +1,7 @@
 
 import { useCart } from "../../Store/cartStore";
 import { ArrivalData } from "../../Data/homeData";
+import { products } from "../../Data/shopData";
 import { CartSummary } from "./CartSummary";
 import { CouponBox } from "./CouponBox";
 
@@ -8,8 +9,13 @@ export const CartPage = ({ onNext }: { onNext: () => void }) => {
   const { cartItem, removeFromCart, increaseQuantity, decreaseQuantity } = useCart();
 
   const getProductImage = (id: number) => {
-    return ArrivalData.find((item) => item.id === id)?.image || "https://via.placeholder.com/80";
+    return (
+      ArrivalData.find((item) => item.id === id)?.image ||
+      products.find((item) => item.id === id)?.image ||
+      "https://via.placeholder.com/80"
+    );
   };
+  
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
