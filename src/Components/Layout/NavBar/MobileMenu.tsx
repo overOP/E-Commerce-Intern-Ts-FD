@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { MdClose } from "react-icons/md";
 import { FaChevronDown } from "react-icons/fa6";
 import { IoLogoInstagram } from "react-icons/io5";
 import { SlSocialFacebook } from "react-icons/sl";
 import { PiYoutubeLogoLight } from "react-icons/pi";
+import { useWishlist } from "../../../Store/wishlistStore";
 
 import { navData } from "../../../Data/navData";
 import shopping from "../../../assets/Icon/shopping bag.png";
-import shape    from "../../../assets/Icon/Shape.png";
 
 interface Props {
   cartCount: number;
@@ -19,7 +19,10 @@ const MobileMenu = ({ cartCount, onClose }: Props) => {
   const [openLinks, setOpenLinks] = useState<Record<number, boolean>>({});
 
   const toggleLink = (id: number) =>
-    setOpenLinks((p) => ({ ...p, [id]: !p[id] }));
+    setOpenLinks((prev) => ({ ...prev, [id]: !prev[id] }));
+
+  const { wishlistItems } = useWishlist();
+  const wishlistCount = wishlistItems.length;
 
   return (
     <div className="fixed inset-0 bg-white z-50 flex flex-col">
@@ -106,15 +109,20 @@ const MobileMenu = ({ cartCount, onClose }: Props) => {
         </div>
         <div className="border-b border-gray-200" />
 
-        {/* wishlist row (static 2 in screenshot) */}
+        {/* wishlist row */}
         <div className="flex items-center justify-between">
           <span>Wishlist</span>
-          <div className="relative">
-            <img src={shape} alt="wishlist" className="h-5 w-5" />
-            <span className="absolute -top-2 -right-2 bg-black text-white text-[10px] rounded-full h-5 w-5 flex items-center justify-center">
-              2
-            </span>
-          </div>
+          <Link
+            to="/"
+            className="relative text-gray-600 hover:text-black"
+          >
+            <img src="/src/assets/Icon/Shape.png" alt="wishlist" />
+            {wishlistCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                {wishlistCount}
+              </span>
+            )}
+          </Link>
         </div>
         <div className="border-b border-gray-200" />
 
@@ -125,7 +133,7 @@ const MobileMenu = ({ cartCount, onClose }: Props) => {
 
         {/* socials */}
         <div className="flex gap-6 text-gray-800">
-          <IoLogoInstagram  size={20} />
+          <IoLogoInstagram size={20} />
           <SlSocialFacebook size={20} />
           <PiYoutubeLogoLight size={20} />
         </div>
@@ -135,3 +143,4 @@ const MobileMenu = ({ cartCount, onClose }: Props) => {
 };
 
 export default MobileMenu;
+
