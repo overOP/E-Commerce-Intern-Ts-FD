@@ -1,7 +1,19 @@
+import img1 from "../assets/Img/shop.jpg";
+
+import img2 from "../assets/Img/i1.png";  
+import img3 from "../assets/Img/1.png";
+import img4 from "../assets/Img/i3.png";
+import img5 from "../assets/Img/6.jpg";
+import img6 from "../assets/Img/p1.jpg"
+import img7 from "../assets/Img/7.jpg";
+import img8 from "../assets/Img/8.jpg";
+import img9 from "../assets/Img/i2.png";
+import img10 from "../assets/Img/i4.png";
+
 export const sectionData = [
   {
     id: 1,
-    image: "/src/assets/Img/shop.jpg"
+    image: img1
   }
 ];
 
@@ -26,7 +38,7 @@ export const products = [
       oldPrice: "$400.00",
       tag: "NEW",
       discount: "-50%",
-      image: "/src/assets/Img/i1.png",
+      image: img2,
       rating: 5,
       heart: true,
       button: "Add to cart",
@@ -38,7 +50,7 @@ export const products = [
       oldPrice: "$600.00",
       tag: "NEW",
       discount: "-50%",
-      image: "/src/assets/Img/1.png",
+      image: img3,
       rating: 5,
       heart: true,
       button: "Add to cart",
@@ -49,7 +61,7 @@ export const products = [
       price: "$19.00",
       tag: "NEW",
       discount: "-50%",
-      image: "/src/assets/Img/i3.png",
+      image: img4,
       rating: 5,
       heart: true,
       button: "Add to cart",
@@ -60,7 +72,7 @@ export const products = [
       price: "$89.99",
       tag: "NEW",
       discount: "-50%",
-      image: "/src/assets/Img/6.jpg",
+      image: img5,
       rating: 5,
       heart: true,
       button: "Add to cart",
@@ -71,7 +83,7 @@ export const products = [
       price: "$19.99",
       tag: "NEW",
       discount: "-50%",
-      image: "/src/assets/Img/p1.jpg",
+      image: img6,
       rating: 5,
       heart: true,
       button: "Add to cart",
@@ -82,7 +94,7 @@ export const products = [
       price: "$39.00",
       tag: "NEW",
       discount: "-50%",
-      image: "/src/assets/Img/7.jpg",
+      image: img7,
       rating: 5,
       heart: true,
       button: "Add to cart",
@@ -93,28 +105,29 @@ export const products = [
       price: "$3.99",
       tag: "NEW",
       discount: "-50%",
-      image: "/src/assets/Img/8.jpg",
-      rating: 5,
-      heart: true,
-      button: "Add to cart",
-    },
-    {
-      title: "Table Lamp",
-      price: "$39.99",
-      tag: "NEW",
-      discount: "-50%",
-      image: "/src/assets/Img/i2.png",
+      image: img8,
       rating: 5,
       heart: true,
       button: "Add to cart",
     },
     {
       id: 8,
+      title: "Table Lamp",
+      price: "$39.99",
+      tag: "NEW",
+      discount: "-50%",
+      image: img9,
+      rating: 5,
+      heart: true,
+      button: "Add to cart",
+    },
+    {
+      id: 9,
       title: "Bamboo Basket",
       price: "$9.99",
       tag: "NEW",
       discount: "-50%",
-      image: "/src/assets/Img/i4.png",
+      image: img10,
       rating: 5,
       heart: true,
       button: "Add to cart",
