@@ -1,4 +1,4 @@
-
+import img1 from "../../assets/Icon/Vector.png";
 export const CouponBox = () => {
   return (
     <div className="mt-8">
@@ -6,7 +6,7 @@ export const CouponBox = () => {
       <p className="text-gray-500 text-text5 mb-2 Inter">Add your code for an instant cart discount.</p>
       <div className="flex items-center w-full max-w-[424px] gap-2">
         <img 
-          src="/src/assets/Icon/Vector.png" 
+          src= {img1}
           alt="search" 
           className="w-4 h-4" 
         />
