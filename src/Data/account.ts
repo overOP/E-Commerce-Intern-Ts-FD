@@ -35,8 +35,6 @@ export const links = [
         pauseOnHover: true,
         draggable: true,
       });
-
-      // Add your actual logout logic here if needed
     },
     onClickOnly: true,
   }

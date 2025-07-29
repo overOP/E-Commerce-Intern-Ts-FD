@@ -7,6 +7,8 @@ import { SlSocialFacebook } from "react-icons/sl";
 import { PiYoutubeLogoLight } from "react-icons/pi";
 import { useWishlist } from "../../../Store/wishlistStore";
 
+import img1 from "../../../assets/Icon/Shape.png";
+
 import { navData } from "../../../Data/navData";
 import shopping from "../../../assets/Icon/shopping bag.png";
 
@@ -116,7 +118,7 @@ const MobileMenu = ({ cartCount, onClose }: Props) => {
             to="/"
             className="relative text-gray-600 hover:text-black"
           >
-            <img src="/src/assets/Icon/Shape.png" alt="wishlist" />
+            <img src= {img1} alt="wishlist" />
             {wishlistCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                 {wishlistCount}

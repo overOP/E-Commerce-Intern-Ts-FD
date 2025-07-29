@@ -5,6 +5,14 @@ import { products } from "../../../Data/shopData";
 import { useWishlist } from "../../../Store/wishlistStore";
 import { useCart } from "../../../Store/cartStore";
 
+
+import img1 from "../../../assets/Icon/s1.png";
+import img2 from "../../../assets/Icon/s2.png";
+import img3 from "../../../assets/Icon/s3.png";
+import img4 from "../../../assets/Icon/s4.png";
+
+import img5 from "../../../assets/Icon/filter 05.svg";
+
 const priceRanges = [
   { label: "$0.00 - 99.99", min: 0, max: 99.99 },
   { label: "$100.00 - 199.99", min: 100, max: 199.99 },
@@ -69,7 +77,7 @@ const LivingRoom = () => {
         </button>
 
         <div className="flex gap-2 mb-4 items-center">
-          <img src="/src/assets/Icon/filter 05.svg" alt="Filter icon" />
+          <img src= {img5} alt="Filter icon" />
           <h2 className="text-tsxt3 Inter text-lg font-semibold">Filter</h2>
         </div>
 
@@ -113,10 +121,10 @@ const LivingRoom = () => {
               <FaAngleDown className="mt-1" />
             </label>
             <div className="flex items-center gap-2">
-              <img src="/src/assets/Icon/s1.png" onClick={() => setLayout("grid-4")} className="cursor-pointer" alt="4 columns" />
-              <img src="/src/assets/Icon/s2.png" onClick={() => setLayout("grid-2")} className="cursor-pointer" alt="2 columns" />
-              <img src="/src/assets/Icon/s3.png" onClick={() => setLayout("grid-3")} className="cursor-pointer" alt="3 columns" />
-              <img src="/src/assets/Icon/s4.png" onClick={() => setLayout("list")} className="cursor-pointer" alt="List view" />
+              <img src= {img1} onClick={() => setLayout("grid-4")} className="cursor-pointer" alt="4 columns" />
+              <img src= {img2} onClick={() => setLayout("grid-2")} className="cursor-pointer" alt="2 columns" />
+              <img src= {img3} onClick={() => setLayout("grid-3")} className="cursor-pointer" alt="3 columns" />
+              <img src= {img4} onClick={() => setLayout("list")} className="cursor-pointer" alt="List view" />
             </div>
           </div>
         </div>
