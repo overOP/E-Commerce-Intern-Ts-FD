@@ -59,7 +59,7 @@ export const CheckoutOrderSummary = () => {
         </div>
          <div className="flex justify-between text-gray-600">
           <span>Shipping</span>
-          <span>{shippingCost === 0 ? "Free" : `$${shippingCost.toFixed(2)}`}</span>
+          <span>{shippingCost === 0 ? "Free" : `$${shippingCost}`}</span>
         </div>
         <div className="flex justify-between text-gray-600">
           <span>Subtotal</span>
