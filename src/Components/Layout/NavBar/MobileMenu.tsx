@@ -115,7 +115,7 @@ const MobileMenu = ({ cartCount, onClose }: Props) => {
         <div className="flex items-center justify-between">
           <span>Wishlist</span>
           <Link
-            to="/"
+            to="/account/wishlist"
             className="relative text-gray-600 hover:text-black"
           >
             <img src= {img1} alt="wishlist" />

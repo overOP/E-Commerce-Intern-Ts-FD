@@ -29,7 +29,7 @@ const IconsGroup = ({ cartCount, searchOpen, onToggleSearch }: Props) => {
 
       {/* wishlist */}
       <Link
-        to="/"
+        to="/account/wishlist"
         className="relative text-gray-600 hover:text-black hidden md:flex"
       >
       <img src={icon}/>
