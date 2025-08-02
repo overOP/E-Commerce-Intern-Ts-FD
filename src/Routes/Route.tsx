@@ -40,7 +40,7 @@
 // ]);
 
 
-// router.jsx
+
 import { createBrowserRouter, Navigate } from "react-router";
 import Layout from "../Layout/Layout";
 import Home from "../Pages/Home";
@@ -56,7 +56,9 @@ import Address from "../Pages/account/Address";
 import Orders from "../Pages/account/Orders";
 import Wishlist from "../Pages/account/Wishlist";
 
+// Auth Layouts
 import Signup from "../Layout/Signup";
+import SigninMain from "../Components/Layout/signup/SigninMain";
 import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
@@ -67,6 +69,10 @@ export const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />
+  },
+  {
+    path: "/signin",
+    element: <SigninMain />
   },
   {
     path: "/app",

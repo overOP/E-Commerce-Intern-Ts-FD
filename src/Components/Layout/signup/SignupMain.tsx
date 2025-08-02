@@ -1,7 +1,14 @@
+import { Link } from "react-router";
 import img from "../../../assets/Img/R.png";
 import Input from "../../Input";
+import { useState } from "react";
 
 const SignupMain = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const handlePasswordVisibility = (event: React.MouseEvent) => {
+    setShowPassword(!showPassword);
+    event.preventDefault();
+  };
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* Left Side - Image & Branding */}
@@ -18,25 +25,40 @@ const SignupMain = () => {
       <div className="flex items-center justify-center bg-white p-6 w-full md:w-1/2">
         <div className="w-full max-w-md">
           <h3 className="text-h4 Poppins mb-2">Sign up</h3>
-          <p className=" Inter text-gray-600 mb-4">
+          <p className="Inter text-gray-600 mb-4">
             Already have an account?{" "}
-            <span className="text-green-600 font-medium cursor-pointer">Sign in</span>
+            <Link
+              to="/signin"
+              className="text-green-600 font-medium cursor-pointer"
+            >
+              Sign in
+            </Link>
           </p>
 
           <form className="space-y-4 Inter">
-            <Input type="text" placeholder="Your name"/>
-            <Input type="text" placeholder="Username"/>
-            <Input type="text" placeholder="Email address"/>
+            <Input type="text" placeholder="Your name" />
+            <Input type="text" placeholder="Username" />
+            <Input type="email" placeholder="Email address" />
             <div className="relative">
-                <Input type="password" placeholder="Password"/>
-              <span className="absolute right-3 top-2.5 text-gray-500 cursor-pointer">
-                👁️
-              </span>
+              <Input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+              />
+              <button
+                type="button"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                onClick={handlePasswordVisibility}
+              >
+                {showPassword ? (
+                  <img className="w-6" src="/view.png" alt="Hide Password" />
+                ) : (
+                  <img className="w-6" src="/eye.png" alt="Show Password" />
+                )}
+              </button>
             </div>
 
-            <label className="flex items-center text-sm  text-gray-600">
-              <input type="checkbox" className="mr-2" />
-              I agree with{" "}
+            <label className="flex items-center text-sm text-gray-600">
+              <input type="checkbox" className="mr-2" />I agree with{" "}
               <span className="font-semibold mx-1">Privacy Policy</span> and{" "}
               <span className="font-semibold">Terms of Use</span>
             </label>
