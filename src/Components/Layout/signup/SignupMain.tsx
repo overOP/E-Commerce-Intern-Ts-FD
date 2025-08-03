@@ -5,10 +5,28 @@ import { useState } from "react";
 
 const SignupMain = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [agreed, setAgreed] = useState(false);
+  const [formError, setFormError] = useState("");
+
   const handlePasswordVisibility = (event: React.MouseEvent) => {
     setShowPassword(!showPassword);
     event.preventDefault();
   };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    if (!agreed) {
+      setFormError("You must agree to the Privacy Policy and Terms of Use.");
+      return;
+    }
+
+    setFormError("");
+
+
+    // Replace with actual API call
+  };
+
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* Left Side - Image & Branding */}
@@ -35,7 +53,7 @@ const SignupMain = () => {
             </Link>
           </p>
 
-          <form className="space-y-4 Inter">
+          <form className="space-y-4 Inter" onSubmit={handleSubmit}>
             <Input type="text" placeholder="Your name" />
             <Input type="text" placeholder="Username" />
             <Input type="email" placeholder="Email address" />
@@ -58,10 +76,20 @@ const SignupMain = () => {
             </div>
 
             <label className="flex items-center text-sm text-gray-600">
-              <input type="checkbox" className="mr-2" />I agree with{" "}
+              <input
+                type="checkbox"
+                className="mr-2"
+                checked={agreed}
+                onChange={(e) => setAgreed(e.target.checked)}
+              />
+              I agree with{" "}
               <span className="font-semibold mx-1">Privacy Policy</span> and{" "}
               <span className="font-semibold">Terms of Use</span>
             </label>
+
+            {formError && (
+              <p className="text-red-500 text-sm">{formError}</p>
+            )}
 
             <button
               type="submit"
@@ -76,4 +104,4 @@ const SignupMain = () => {
   );
 };
 
-export default SignupMain;
+export default SignupMain; 
