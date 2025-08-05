@@ -25,19 +25,22 @@ export const links = [
   {
     id: 4,
     title: "Log Out",
-    url: "/",
+    url: "", 
     onClick: () => {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("userData");
+  
       toast.info("Logging out...", {
         position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
+        autoClose: 1500,
+        onClose: () => {
+          window.location.href = "/signin";
+        },
       });
     },
     onClickOnly: true,
   }
+  
 ];
 
   

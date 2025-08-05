@@ -60,34 +60,42 @@ import Wishlist from "../Pages/account/Wishlist";
 import Signup from "../Layout/Signup";
 import SigninMain from "../Components/Layout/signup/SigninMain";
 import ProtectedRoute from "./ProtectedRoute";
+import ForgotPassword from "../Components/Layout/ForgotPassword/ForgotPassword";
+import ResetPassword from "../Components/Layout/ForgotPassword/ResetPassword";
 
 export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Navigate to="/signup" replace />
-  },
+  // Public routes
   {
     path: "/signup",
-    element: <Signup />
+    element: <Signup />,
   },
   {
     path: "/signin",
-    element: <SigninMain />
+    element: <SigninMain />,
   },
   {
-    path: "/app",
-    element: <Layout />,
+    path: "/forgot-password",
+    element: <ForgotPassword />,
+  },
+  {
+    path: "/reset-password/:token",
+    element: <ResetPassword />,
+  },
+
+  // Protected routes
+  {
+    element: <ProtectedRoute />,
     children: [
       {
-        element: <ProtectedRoute />,
+        element: <Layout />,
         children: [
-          { index: true, element: <Home /> },
-          { path: "cart", element: <Cart /> },
-          { path: "shopmain/:id", element: <ShopMain /> },
-          { path: "shop", element: <Shop /> },
-          { path: "contact", element: <Contact /> },
+          { path: "/", element: <Home /> },  // 👈 main home page at "/"
+          { path: "/cart", element: <Cart /> },
+          { path: "/shopmain/:id", element: <ShopMain /> },
+          { path: "/shop", element: <Shop /> },
+          { path: "/contact", element: <Contact /> },
           {
-            path: "account",
+            path: "/account",
             element: <Account />,
             children: [
               { index: true, element: <Main /> },
@@ -100,5 +108,12 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
+  // If unmatched route, redirect to /
+  {
+    path: "*",
+    element: <Navigate to="/" replace />,
+  },
 ]);
+
 
