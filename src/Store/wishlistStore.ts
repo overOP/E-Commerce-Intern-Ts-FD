@@ -1,4 +1,3 @@
-// Store/wishlistStore.ts
 import { create } from 'zustand';
 
 interface WishlistItem {
